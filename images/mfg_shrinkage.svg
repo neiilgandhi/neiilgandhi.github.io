@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 495" width="880" height="495" font-family="Archivo, 'Helvetica Neue', Arial, sans-serif" role="img" aria-label="Metal molds shrink aluminum castings more than sand">
+<rect width="880" height="495" fill="#ffffff"/>
+<text x="40" y="46" font-size="20" font-weight="700" fill="#0f1b2d">Metal molds shrink aluminum castings more than sand</text>
+<text x="40" y="70" font-size="14" fill="#4d5b70">Solid shrinkage allowance calculated from measured pattern and casting dimensions.</text>
+<line x1="70" x2="840" y1="410.0" y2="410.0" stroke="#0f1b2d"/>
+<text x="60" y="414.0" font-size="13" fill="#4d5b70" text-anchor="end">0%</text>
+<line x1="70" x2="840" y1="310.0" y2="310.0" stroke="#dde3ea"/>
+<text x="60" y="314.0" font-size="13" fill="#4d5b70" text-anchor="end">2%</text>
+<line x1="70" x2="840" y1="210.0" y2="210.0" stroke="#dde3ea"/>
+<text x="60" y="214.0" font-size="13" fill="#4d5b70" text-anchor="end">4%</text>
+<line x1="70" x2="840" y1="110.0" y2="110.0" stroke="#dde3ea"/>
+<text x="60" y="114.0" font-size="13" fill="#4d5b70" text-anchor="end">6%</text>
+<text x="70" y="96" font-size="13" fill="#4d5b70">Shrinkage allowance</text>
+<path d="M154.2,410.0 V211.0 Q154.2,207.0 158.2,207.0 H174.2 Q178.2,207.0 178.2,211.0 V410.0 Z" fill="#2447d8"/>
+<text x="166.2" y="199.0" font-size="13" font-weight="600" fill="#0f1b2d" text-anchor="middle">4.06%</text>
+<text x="166.2" y="432" font-size="13" fill="#4d5b70" text-anchor="middle">Aluminum,</text>
+<text x="166.2" y="450" font-size="13" fill="#4d5b70" text-anchor="middle">sand mold</text>
+<path d="M346.8,410.0 V134.5 Q346.8,130.5 350.8,130.5 H366.8 Q370.8,130.5 370.8,134.5 V410.0 Z" fill="#2447d8"/>
+<text x="358.8" y="122.5" font-size="13" font-weight="600" fill="#0f1b2d" text-anchor="middle">5.59%</text>
+<text x="358.8" y="432" font-size="13" fill="#4d5b70" text-anchor="middle">Aluminum,</text>
+<text x="358.8" y="450" font-size="13" fill="#4d5b70" text-anchor="middle">metal mold</text>
+<path d="M539.2,410.0 V264.5 Q539.2,260.5 543.2,260.5 H559.2 Q563.2,260.5 563.2,264.5 V410.0 Z" fill="#2447d8"/>
+<text x="551.2" y="252.5" font-size="13" font-weight="600" fill="#0f1b2d" text-anchor="middle">2.99%</text>
+<text x="551.2" y="432" font-size="13" fill="#4d5b70" text-anchor="middle">Stainless investment</text>
+<text x="551.2" y="450" font-size="13" fill="#4d5b70" text-anchor="middle">casting, diameter</text>
+<path d="M731.8,410.0 V349.5 Q731.8,345.5 735.8,345.5 H751.8 Q755.8,345.5 755.8,349.5 V410.0 Z" fill="#2447d8"/>
+<text x="743.8" y="337.5" font-size="13" font-weight="600" fill="#0f1b2d" text-anchor="middle">1.29%</text>
+<text x="743.8" y="432" font-size="13" fill="#4d5b70" text-anchor="middle">Stainless investment</text>
+<text x="743.8" y="450" font-size="13" fill="#4d5b70" text-anchor="middle">casting, thickness</text>
+</svg>

@@ -4,882 +4,583 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Neiil Gandhi — Mechanical Engineer</title>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <meta name="description" content="Neiil Gandhi is a Penn State mechanical engineering student and Schreyer Honors Scholar working on drones, vehicles, and the models behind them." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://neiilgandhi.github.io/" />
+  <meta property="og:title" content="Neiil Gandhi — Mechanical Engineer" />
+  <meta property="og:description" content="Penn State mechanical engineering and Schreyer Honors Scholar. Drone research, thermal mapping, vehicle teams, and simulation studies." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #fafaf8;
-      --surface: #f2f1ee;
-      --border: rgba(0,0,0,0.1);
-      --border-md: rgba(0,0,0,0.18);
-      --text: #1a1a18;
-      --muted: #6b6b67;
-      --accent: #1a1a18;
-      --tag-bg: #eeedf0;
-      --tag-text: #3c3a4a;
-      --info-bg: #e6f1fb;
-      --info-text: #0c447c;
+      --paper: #f3f5f7;
+      --panel: #ffffff;
+      --ink: #0f1b2d;
+      --ink-soft: #4d5b70;
+      --line: #cfd7e0;
+      --signal: #2447d8;
+      /* Simulation colour scale: cold to hot */
+      --cold: #2b4acb;
+      --cool: #19b5a5;
+      --warm: #f2c230;
+      --hot: #e4572e;
+      --scale: linear-gradient(90deg, var(--cold), var(--cool), var(--warm), var(--hot));
+      --font: 'Archivo', system-ui, -apple-system, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+      --wide: 125%;
+      --gutter: clamp(1.25rem, 4vw, 3rem);
+      --measure: 62ch;
     }
+
+    html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
 
     body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
+      font-family: var(--font);
+      font-size: 1.0625rem;
+      line-height: 1.55;
+      color: var(--ink);
+      background: var(--paper);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
     }
 
-    a { color: inherit; text-decoration: none; }
+    a { color: inherit; }
+    img { display: block; max-width: 100%; }
+    button { font: inherit; color: inherit; }
 
-    /* ── Nav ── */
-    nav {
-      position: sticky;
-      top: 0;
-      background: rgba(250,250,248,0.92);
-      backdrop-filter: blur(12px);
-      border-bottom: 0.5px solid var(--border);
-      z-index: 100;
-      padding: 0 2rem;
+    :focus-visible { outline: 3px solid var(--signal); outline-offset: 3px; }
+
+    .skip {
+      position: absolute; left: var(--gutter); top: -4rem;
+      background: var(--ink); color: #fff; padding: 0.6rem 1rem; z-index: 300;
     }
+    .skip:focus { top: 0.75rem; }
 
-    .nav-inner {
-      max-width: 960px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      height: 60px;
+    .wrap { max-width: 72rem; margin: 0 auto; padding: 0 var(--gutter); }
+
+    /* ── Top bar ── */
+    .top {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(243, 245, 247, 0.9);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
     }
-
-    .nav-logo {
-      font-family: 'DM Serif Display', serif;
-      font-size: 17px;
-      letter-spacing: 0.01em;
+    .top-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 1.5rem; min-height: 3.75rem;
     }
-
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
+    .top-name {
+      font-stretch: var(--wide); font-weight: 700; font-size: 1rem;
+      letter-spacing: -0.01em; text-decoration: none;
     }
-
-    .nav-links a {
-      font-size: 14px;
-      color: var(--muted);
-      transition: color 0.2s;
+    .top-nav { display: flex; align-items: center; gap: clamp(1rem, 3vw, 2rem); list-style: none; }
+    .top-nav a { font-size: 0.9375rem; text-decoration: none; color: var(--ink-soft); }
+    .top-nav a:hover { color: var(--ink); }
+    .top-nav .top-resume {
+      color: var(--ink); border: 1px solid var(--ink); border-radius: 4px; padding: 0.35rem 0.8rem;
     }
-
-    .nav-links a:hover { color: var(--text); }
-
-    /* ── Layout ── */
-    .page { max-width: 960px; margin: 0 auto; padding: 0 2rem; }
-
-    section { padding: 6rem 0; border-bottom: 0.5px solid var(--border); }
-    section:last-of-type { border-bottom: none; }
-
-    .section-eyebrow {
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 1.25rem;
-    }
-
-    .section-title {
-      font-family: 'DM Serif Display', serif;
-      font-size: 36px;
-      font-weight: 400;
-      margin-bottom: 3rem;
-      line-height: 1.2;
-    }
+    .top-nav .top-resume:hover { background: var(--ink); color: #fff; }
 
     /* ── Hero ── */
-    #hero {
-      padding: 7rem 0 6rem;
-      border-bottom: 0.5px solid var(--border);
-    }
-
-    .hero-grid {
+    .hero {
       display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 4rem;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+      gap: clamp(2rem, 5vw, 4.5rem);
       align-items: center;
+      padding-top: clamp(3rem, 8vw, 6rem);
+      padding-bottom: clamp(2.5rem, 6vw, 4.5rem);
     }
-
-    .hero-text h1 {
-      font-family: 'DM Serif Display', serif;
-      font-size: 52px;
-      font-weight: 400;
-      line-height: 1.12;
-      margin-bottom: 1.5rem;
+    .hero h1 {
+      font-stretch: var(--wide);
+      font-weight: 800;
+      font-size: clamp(3.25rem, 8.6vw, 7rem);
+      line-height: 0.88;
+      letter-spacing: -0.035em;
     }
-
-    .hero-text p {
-      font-size: 17px;
-      color: var(--muted);
-      line-height: 1.75;
-      margin-bottom: 2rem;
-      max-width: 440px;
+    .hero h1 span { display: block; }
+    .hero-lede {
+      margin-top: 1.75rem;
+      font-size: clamp(1.125rem, 1.6vw, 1.3125rem);
+      line-height: 1.45;
+      max-width: 34ch;
     }
-
-    .hero-badges {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 2.5rem;
-    }
-
-    .badge {
-      font-size: 12px;
-      font-weight: 500;
-      padding: 4px 12px;
-      border-radius: 20px;
-      background: var(--tag-bg);
-      color: var(--tag-text);
-      letter-spacing: 0.02em;
-    }
-
-    .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2rem; }
 
     .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 20px;
-      border-radius: 8px;
-      font-size: 14px;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.18s;
-      text-decoration: none;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.7rem 1.15rem; border-radius: 4px;
+      border: 1px solid var(--ink); background: transparent;
+      font-weight: 600; font-size: 0.9375rem; text-decoration: none; cursor: pointer;
+      transition: background-color 0.15s, color 0.15s;
     }
+    .btn:hover { background: var(--ink); color: #fff; }
+    .btn-solid { background: var(--ink); color: #fff; }
+    .btn-solid:hover { background: var(--signal); border-color: var(--signal); }
 
-    .btn-primary {
-      background: var(--text);
-      color: var(--bg);
-      border: 1px solid var(--text);
-    }
-
-    .btn-primary:hover { opacity: 0.85; }
-
-    .btn-secondary {
-      background: transparent;
-      color: var(--text);
-      border: 0.5px solid var(--border-md);
-    }
-
-    .btn-secondary:hover { background: var(--surface); }
-
-    .hero-visual {
-      background: var(--surface);
-      border: 0.5px solid var(--border);
-      border-radius: 16px;
-      aspect-ratio: 4/3;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 1rem;
-    }
-
-    .hero-visual svg { opacity: 0.3; }
-
-    .hero-stat-row {
-      display: flex;
-      gap: 2.5rem;
-      margin-top: 3rem;
-      padding-top: 3rem;
-      border-top: 0.5px solid var(--border);
-    }
-
-    .hero-stat span {
-      display: block;
-      font-family: 'DM Serif Display', serif;
-      font-size: 28px;
-    }
-
-    .hero-stat p {
-      font-size: 13px;
-      color: var(--muted);
-      margin: 0;
-    }
-
-    /* ── Projects ── */
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.25rem;
-    }
-
-    .project-card {
-      background: #fff;
-      border: 0.5px solid var(--border);
-      border-radius: 14px;
+    /* Live plot */
+    .plot {
+      background: var(--panel);
+      border: 1px solid var(--ink);
+      border-radius: 6px;
       overflow: hidden;
-      transition: border-color 0.2s, transform 0.2s;
-      cursor: pointer;
-      text-align: left;
+    }
+    .plot canvas {
+      display: block; width: 100%; aspect-ratio: 1 / 0.86;
+      cursor: grab; touch-action: pan-y;
+    }
+    .plot canvas.is-dragging { cursor: grabbing; }
+    .plot figcaption {
+      display: grid; grid-template-columns: 1fr auto; gap: 0.5rem 1.5rem; align-items: end;
+      border-top: 1px solid var(--ink);
+      padding: 0.9rem 1.1rem 1rem;
+      font-size: 0.875rem; line-height: 1.4;
+    }
+    .plot figcaption strong { font-weight: 600; }
+    .plot figcaption p { color: var(--ink-soft); max-width: 44ch; }
+    .plot figcaption p strong { color: var(--ink); }
+    .scale { min-width: 9.5rem; color: var(--ink-soft); font-size: 0.8125rem; }
+    .scale-bar { height: 0.5rem; border-radius: 1px; background: var(--scale); margin-bottom: 0.3rem; }
+    .scale-ends { display: flex; justify-content: space-between; }
+
+    /* Title block, as on an engineering drawing */
+    .titleblock {
+      display: grid;
+      grid-template-columns: 1.3fr 1.5fr 0.9fr 0.7fr 1.7fr;
+      border: 1px solid var(--ink);
+      border-radius: 6px;
+      background: var(--panel);
+      overflow: hidden;
+    }
+    .titleblock div { padding: 0.8rem 1.1rem 0.9rem; border-left: 1px solid var(--ink); }
+    .titleblock div:first-child { border-left: 0; }
+    .titleblock dt { font-size: 0.8125rem; color: var(--ink-soft); }
+    .titleblock dd { font-weight: 600; line-height: 1.3; margin-top: 0.15rem; }
+
+    /* ── Sections ── */
+    .section { padding-top: clamp(4rem, 9vw, 7rem); }
+    .section h2 {
+      font-stretch: var(--wide); font-weight: 800;
+      font-size: clamp(2rem, 4.4vw, 3.25rem);
+      line-height: 1; letter-spacing: -0.03em;
+    }
+    .section-intro { margin-top: 1rem; max-width: var(--measure); color: var(--ink-soft); }
+
+    /* ── Work index ── */
+    .group { margin-top: clamp(2.5rem, 5vw, 3.5rem); }
+    .group h3 {
+      font-weight: 600; font-size: 1rem;
+      padding-bottom: 0.6rem; border-bottom: 2px solid var(--ink);
+    }
+    .rows { list-style: none; }
+    .rows li { border-bottom: 1px solid var(--line); }
+
+    .row {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 13.5rem 1.5rem;
+      gap: 0.25rem 2rem;
+      align-items: start;
       width: 100%;
-      font-family: inherit;
-      color: inherit;
+      padding: 1.35rem 0.75rem 1.4rem 1.1rem;
+      background: none; border: 0; text-align: left; cursor: pointer;
+      transition: background-color 0.15s;
+    }
+    .row::before {
+      content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px;
+      background: linear-gradient(180deg, var(--hot), var(--warm), var(--cool), var(--cold));
+      transform: scaleY(0); transform-origin: top; transition: transform 0.2s ease-out;
+    }
+    .row:hover, .row:focus-visible { background: var(--panel); }
+    .row:hover::before, .row:focus-visible::before { transform: scaleY(1); }
+    .row-title {
+      display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.35rem 0.75rem;
+      font-stretch: 112%; font-weight: 700; font-size: 1.3125rem; line-height: 1.2; letter-spacing: -0.01em;
+    }
+    .row-sum { grid-column: 1; margin-top: 0.4rem; color: var(--ink-soft); max-width: var(--measure); }
+    .row-when {
+      grid-column: 2; grid-row: 1 / span 2;
+      font-size: 0.9375rem; line-height: 1.4; padding-top: 0.2rem;
+      font-variant-numeric: tabular-nums;
+    }
+    .row-when span { display: block; color: var(--ink-soft); }
+    .row-open {
+      grid-column: 3; grid-row: 1 / span 2; justify-self: end; padding-top: 0.15rem;
+      font-size: 1.375rem; line-height: 1; font-weight: 300; color: var(--ink-soft);
+      transition: transform 0.2s, color 0.2s;
+    }
+    .row:hover .row-open, .row:focus-visible .row-open { color: var(--signal); transform: rotate(90deg); }
+    .status {
+      font-stretch: 100%; font-weight: 600; font-size: 0.75rem; letter-spacing: 0;
+      color: var(--signal); border: 1px solid currentColor; border-radius: 999px;
+      padding: 0.1rem 0.55rem; white-space: nowrap;
+    }
+
+    /* Studies that have real simulation output get shown as images */
+    .studies { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
+    .study {
+      display: block; width: 100%; text-align: left; cursor: pointer;
+      background: var(--panel); border: 1px solid var(--ink); border-radius: 6px; overflow: hidden;
       padding: 0;
     }
-
-    .project-card:hover {
-      border-color: var(--border-md);
-      transform: translateY(-2px);
-    }
-
-    .project-card:focus-visible {
-      outline: 2px solid var(--text);
-      outline-offset: 2px;
-    }
-
-    /* ── Modal ── */
-    .modal-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(10,10,8,0.55);
-      backdrop-filter: blur(4px);
-      display: none;
-      align-items: flex-start;
-      justify-content: center;
-      padding: 4rem 1.5rem;
-      z-index: 200;
-      overflow-y: auto;
-      animation: fadeIn 0.2s ease;
-    }
-
-    .modal-overlay.active { display: flex; }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    @keyframes slideUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .modal {
-      background: var(--bg);
-      border-radius: 16px;
-      max-width: 720px;
-      width: 100%;
-      padding: 2.5rem 2.5rem 3rem;
-      position: relative;
-      animation: slideUp 0.25s ease;
-    }
-
-    .modal-close {
-      position: absolute;
-      top: 1.25rem;
-      right: 1.25rem;
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      border: none;
-      background: var(--surface);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.18s;
-      color: var(--text);
-    }
-
-    .modal-close:hover { background: var(--border); }
-
-    .modal-tag {
-      display: inline-block;
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--info-text);
-      background: var(--info-bg);
-      padding: 4px 10px;
-      border-radius: 4px;
-      margin-bottom: 1rem;
-    }
-
-    .modal h2 {
-      font-family: 'DM Serif Display', serif;
-      font-size: 32px;
-      font-weight: 400;
-      line-height: 1.2;
-      margin-bottom: 0.5rem;
-    }
-
-    .modal-meta {
-      font-size: 14px;
-      color: var(--muted);
-      margin-bottom: 1.75rem;
-    }
-
-    .modal-section {
-      margin-bottom: 1.75rem;
-    }
-
-    .modal-section h4 {
-      font-size: 12px;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--muted);
-      margin-bottom: 0.75rem;
-    }
-
-    .modal-section p {
-      font-size: 15px;
-      color: var(--text);
-      line-height: 1.75;
-      margin-bottom: 0.75rem;
-    }
-
-    .modal-section ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    .modal-section ul li {
-      font-size: 15px;
-      color: var(--text);
-      line-height: 1.7;
-      padding-left: 1.25rem;
-      position: relative;
-      margin-bottom: 0.6rem;
-    }
-
-    .modal-section ul li::before {
-      content: "→";
-      position: absolute;
-      left: 0;
-      color: var(--muted);
-    }
-
-    .modal-stack {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
-
-    .modal-stack span {
-      font-size: 13px;
-      padding: 5px 11px;
-      border: 0.5px solid var(--border-md);
-      border-radius: 20px;
-      color: var(--muted);
-      background: #fff;
-    }
-
-    .modal-images {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-bottom: 1rem;
-    }
-
-    .modal-image {
-      background: var(--surface);
-      border: 0.5px solid var(--border);
-      border-radius: 10px;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .modal-image img {
-      width: 100%;
-      height: auto;
-      display: block;
-      background: #fff;
-    }
-
-    .modal-image .caption {
-      font-size: 12px;
-      color: var(--muted);
-      padding: 8px 12px;
-      border-top: 0.5px solid var(--border);
-      background: #fff;
-    }
-
-    @media (max-width: 600px) {
-      .modal-images { grid-template-columns: 1fr; }
-    }
-
-    .project-thumb {
-      background: var(--surface);
-      height: 140px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-bottom: 0.5px solid var(--border);
-      font-size: 42px;
-      overflow: hidden;
-    }
-
-    .project-thumb img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-    }
-
-    .project-body { padding: 1.25rem 1.25rem 1.5rem; }
-
-    .project-tag {
-      display: inline-block;
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--info-text);
-      background: var(--info-bg);
-      padding: 3px 8px;
-      border-radius: 4px;
-      margin-bottom: 0.75rem;
-    }
-
-    .project-body h3 {
-      font-size: 16px;
-      font-weight: 500;
-      margin-bottom: 0.6rem;
-      line-height: 1.4;
-    }
-
-    .project-body p {
-      font-size: 14px;
-      color: var(--muted);
-      line-height: 1.65;
-    }
+    .study-img { display: block; aspect-ratio: 16 / 9; overflow: hidden; border-bottom: 1px solid var(--ink); background: #fff; }
+    .study-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease-out; }
+    .study:hover .study-img img, .study:focus-visible .study-img img { transform: scale(1.04); }
+    .study-body { display: block; padding: 1.1rem 1.25rem 1.3rem; }
+    .study-body .row-title { display: block; }
+    .study-body .row-sum { display: block; }
+    .study-body .study-when { display: block; margin-top: 0.75rem; font-size: 0.9375rem; }
 
     /* ── About ── */
-    .about-grid {
-      display: grid;
-      grid-template-columns: 0.8fr 1.2fr;
-      gap: 4rem;
-      align-items: start;
-    }
-
-    .about-card {
-      background: var(--surface);
-      border: 0.5px solid var(--border);
-      border-radius: 14px;
-      padding: 2rem;
-    }
-
-    .about-initials {
-      width: 64px;
-      height: 64px;
-      border-radius: 50%;
-      background: var(--text);
-      color: var(--bg);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'DM Serif Display', serif;
-      font-size: 22px;
-      margin-bottom: 1.25rem;
-    }
-
-    .about-card h3 {
-      font-size: 18px;
-      font-weight: 500;
-      margin-bottom: 4px;
-    }
-
-    .about-card .role {
-      font-size: 14px;
-      color: var(--muted);
-      margin-bottom: 1.5rem;
-    }
-
-    .about-detail {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 14px;
-      color: var(--muted);
-      margin-bottom: 8px;
-    }
-
-    .about-detail svg { flex-shrink: 0; }
-
-    .about-text p {
-      font-size: 16px;
-      color: var(--muted);
-      line-height: 1.8;
-      margin-bottom: 1.25rem;
-    }
-
-    .about-text p:last-child { margin-bottom: 0; }
+    .about { display: grid; grid-template-columns: minmax(0, 1fr) 19rem; gap: clamp(2rem, 6vw, 5rem); margin-top: 2rem; }
+    .about-text p { max-width: var(--measure); }
+    .about-text p + p { margin-top: 1.1rem; }
+    .about-text p:first-child { font-size: 1.25rem; line-height: 1.45; }
+    .facts { align-self: start; border-top: 2px solid var(--ink); }
+    .facts div { padding: 0.75rem 0; border-bottom: 1px solid var(--line); }
+    .facts dt { font-size: 0.8125rem; color: var(--ink-soft); }
+    .facts dd { font-weight: 600; line-height: 1.35; overflow-wrap: anywhere; }
+    .facts dd + dd { margin-top: 0.15rem; }
+    .facts a { text-decoration-color: var(--line); text-underline-offset: 3px; }
+    .facts a:hover { text-decoration-color: var(--signal); color: var(--signal); }
 
     /* ── Skills ── */
-    .skills-layout {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 2rem;
+    .skills { margin-top: 2rem; border-top: 2px solid var(--ink); }
+    .skills div {
+      display: grid; grid-template-columns: 15rem minmax(0, 1fr); gap: 0.25rem 2rem;
+      padding: 1rem 0; border-bottom: 1px solid var(--line);
     }
-
-    .skill-group h4 {
-      font-size: 12px;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--muted);
-      margin-bottom: 1rem;
-    }
-
-    .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
-
-    .skill-tag {
-      font-size: 13px;
-      padding: 5px 11px;
-      border: 0.5px solid var(--border-md);
-      border-radius: 20px;
-      color: var(--muted);
-      background: #fff;
-    }
+    .skills dt { font-weight: 700; font-stretch: 112%; }
+    .skills dd { max-width: var(--measure); }
 
     /* ── Contact ── */
-    .contact-intro {
-      font-size: 17px;
-      color: var(--muted);
-      max-width: 500px;
-      line-height: 1.75;
-      margin-bottom: 2.5rem;
+    .contact { padding-bottom: clamp(4rem, 9vw, 7rem); }
+    .contact-mail {
+      display: inline-block; margin-top: 1.75rem;
+      font-stretch: var(--wide); font-weight: 800;
+      font-size: clamp(1.5rem, 5.2vw, 3.75rem); letter-spacing: -0.03em; line-height: 1.05;
+      text-decoration: underline; text-decoration-thickness: 0.06em; text-underline-offset: 0.14em;
+      text-decoration-color: var(--line); overflow-wrap: anywhere;
+    }
+    .contact-mail:hover { color: var(--signal); text-decoration-color: var(--signal); }
+    .contact-links { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2rem; list-style: none; }
+
+    footer { border-top: 1px solid var(--line); padding: 1.5rem 0 2.5rem; font-size: 0.875rem; color: var(--ink-soft); }
+    footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.5rem 2rem; }
+
+    /* ── Project panel ── */
+    .modal-overlay {
+      position: fixed; inset: 0; z-index: 200;
+      background: rgba(15, 27, 45, 0.55);
+      display: flex; justify-content: flex-end;
+      opacity: 0; visibility: hidden; transition: opacity 0.2s, visibility 0.2s;
+    }
+    .modal-overlay.active { opacity: 1; visibility: visible; }
+    .modal {
+      position: relative; width: min(46rem, 100%); height: 100%;
+      background: var(--paper); border-left: 1px solid var(--ink);
+      overflow-y: auto; overscroll-behavior: contain;
+      padding: clamp(1.5rem, 4vw, 3rem); padding-top: 4.25rem;
+      transform: translateX(2rem); transition: transform 0.25s ease-out;
+    }
+    .modal-overlay.active .modal { transform: none; }
+    .modal::before {
+      content: ""; position: absolute; top: 0; left: 0; right: 0; height: 6px; background: var(--scale);
+    }
+    .modal-close {
+      position: absolute; top: 1.25rem; right: clamp(1.5rem, 4vw, 3rem);
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      background: var(--panel); border: 1px solid var(--ink); border-radius: 4px;
+      padding: 0.35rem 0.7rem; font-size: 0.875rem; font-weight: 600; cursor: pointer;
+    }
+    .modal-close:hover { background: var(--ink); color: #fff; }
+    .modal h2 {
+      font-stretch: var(--wide); font-weight: 800;
+      font-size: clamp(1.75rem, 4vw, 2.5rem); line-height: 1.02; letter-spacing: -0.03em;
+    }
+    .modal-meta { margin-top: 0.75rem; color: var(--ink-soft); }
+    .modal-section { margin-top: 2rem; }
+    .modal-section h3 { font-weight: 700; font-size: 1rem; padding-bottom: 0.45rem; border-bottom: 2px solid var(--ink); margin-bottom: 0.9rem; }
+    .modal-section p { max-width: var(--measure); }
+    .modal-section ul { list-style: none; }
+    .modal-section li { padding: 0.6rem 0; border-bottom: 1px solid var(--line); max-width: 68ch; }
+    .modal-section li:first-child { padding-top: 0; }
+    .modal-images { display: grid; gap: 1.25rem; }
+    .modal-image { background: var(--panel); border: 1px solid var(--ink); border-radius: 6px; overflow: hidden; }
+    .modal-image img { width: 100%; }
+    .modal-image .caption { padding: 0.7rem 0.9rem; font-size: 0.875rem; color: var(--ink-soft); border-top: 1px solid var(--ink); }
+    .modal-stack { max-width: var(--measure); }
+    .modal-links { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+
+    /* ── Small screens ── */
+    @media (max-width: 60rem) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-lede { max-width: 40ch; }
+      .titleblock { grid-template-columns: 1fr 1fr; }
+      .titleblock div { border-left: 0; border-top: 1px solid var(--ink); }
+      .titleblock div:nth-child(even) { border-left: 1px solid var(--ink); }
+      .titleblock div:nth-child(-n+2) { border-top: 0; }
+      .titleblock div:last-child { grid-column: 1 / -1; border-left: 0; }
+      .about { grid-template-columns: 1fr; }
+      .studies { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 44rem) {
+      body { font-size: 1rem; }
+      .top-nav li.optional { display: none; }
+      .row { grid-template-columns: minmax(0, 1fr) 1.5rem; padding-left: 0.9rem; }
+      .row-when { grid-column: 1; grid-row: auto; padding-top: 0.6rem; }
+      .row-when span { display: inline; }
+      .row-when span::before { content: ", "; }
+      .row-open { grid-column: 2; grid-row: 1; }
+      .studies { grid-template-columns: 1fr; }
+      .skills div { grid-template-columns: 1fr; }
+      .plot figcaption { grid-template-columns: 1fr; }
     }
 
-    .contact-links { display: flex; gap: 12px; flex-wrap: wrap; }
-
-    .contact-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 18px;
-      border: 0.5px solid var(--border-md);
-      border-radius: 8px;
-      font-size: 14px;
-      color: var(--muted);
-      background: #fff;
-      transition: all 0.18s;
-    }
-
-    .contact-link:hover {
-      color: var(--text);
-      border-color: var(--text);
-      background: var(--surface);
-    }
-
-    /* ── Footer ── */
-    footer {
-      padding: 2.5rem 2rem;
-      text-align: center;
-      font-size: 13px;
-      color: var(--muted);
-      border-top: 0.5px solid var(--border);
-    }
-
-    /* ── Responsive ── */
-    @media (max-width: 680px) {
-      .hero-grid, .about-grid { grid-template-columns: 1fr; }
-      .hero-visual { display: none; }
-      .hero-text h1 { font-size: 38px; }
-      .hero-stat-row { gap: 1.5rem; }
-      .section-title { font-size: 28px; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: 0.01ms !important; }
     }
   </style>
 </head>
 <body>
 
-  <nav>
-    <div class="nav-inner">
-      <div class="nav-logo">Neiil Gandhi</div>
-      <ul class="nav-links">
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
+  <a class="skip" href="#work">Skip to work</a>
+
+  <header class="top">
+    <div class="wrap top-inner">
+      <a class="top-name" href="#top">Neiil Gandhi</a>
+      <nav aria-label="Sections">
+        <ul class="top-nav">
+          <li><a href="#work">Work</a></li>
+          <li class="optional"><a href="#about">About</a></li>
+          <li class="optional"><a href="#skills">Skills</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a class="top-resume" href="Neiil_Gandhi_Resume.pdf" download>Resume</a></li>
+        </ul>
+      </nav>
     </div>
-  </nav>
+  </header>
 
-  <div class="page">
+  <main id="top">
 
-    <!-- Hero -->
-    <section id="hero">
-      <div class="hero-grid">
-        <div class="hero-text">
-          <div class="hero-badges">
-            <span class="badge">Penn State ME '27</span>
-            <span class="badge">GPA 3.67</span>
-            <span class="badge">Research · Robotics · Control Systems</span>
-          </div>
-          <h1>Mechanical Engineer & Systems Thinker</h1>
-          <p>I design and build systems that bridge theory and hardware — from ODE models to autonomous vehicles and control architectures.</p>
-          <div class="hero-ctas">
-            <a href="#projects" class="btn btn-primary">View projects</a>
-            <a href="Neiil_Gandhi_Resume.pdf" download class="btn btn-secondary">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-              Download resume
-            </a>
-            <a href="mailto:npg5444@psu.edu" class="btn btn-secondary">Get in touch</a>
+    <div class="wrap">
+      <section class="hero" aria-label="Introduction">
+        <div>
+          <h1><span>Neiil</span><span>Gandhi</span></h1>
+          <p class="hero-lede">I build drones, vehicles, and the math that predicts how they behave. Right now that means 3D-printing a quadcopter frame for my honors thesis at Penn State.</p>
+          <div class="hero-actions">
+            <a href="#work" class="btn btn-solid">See my work</a>
+            <a href="Neiil_Gandhi_Resume.pdf" download class="btn">Download resume</a>
+            <a href="mailto:npg5444@psu.edu" class="btn">Email me</a>
           </div>
         </div>
-        <div class="hero-visual">
-          <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#1a1a18" stroke-width="1.2">
-            <circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/>
-            <path d="M15.54 8.46a5 5 0 0 1 0 7.07M8.46 8.46a5 5 0 0 0 0 7.07"/>
-          </svg>
-          <span style="font-size:13px;color:var(--muted);">Control Systems · Robotics · Dynamics</span>
+
+        <figure class="plot">
+          <canvas id="plot" role="img" aria-label="Animated 3D plot of a one-predator, two-prey population model: closed orbits of grasshopper, beetle, and wolf spider populations."></canvas>
+          <figcaption>
+            <p><strong>Running live in your browser:</strong> the one-predator, two-prey model from my research. Each loop is a cycle the three populations repeat. Drag to rotate.</p>
+            <div class="scale" aria-hidden="true">
+              <div class="scale-bar"></div>
+              <div class="scale-ends"><span>Few wolf spiders</span><span>Many</span></div>
+            </div>
+          </figcaption>
+        </figure>
+      </section>
+
+      <dl class="titleblock">
+        <div><dt>Degree</dt><dd>B.S. Mechanical Engineering</dd></div>
+        <div><dt>School</dt><dd>Penn State, Schreyer Honors College</dd></div>
+        <div><dt>Graduating</dt><dd>Fall 2027</dd></div>
+        <div><dt>GPA</dt><dd>3.67 / 4.0</dd></div>
+        <div><dt>Currently</dt><dd>Drone research at PACLAB, Advanced Vehicle Team</dd></div>
+      </dl>
+    </div>
+
+    <!-- Work -->
+    <section class="section" id="work">
+      <div class="wrap">
+        <h2>Work</h2>
+        <p class="section-intro">Research, an internship, team vehicles, and things I built because I wanted to. Open any of them for the details.</p>
+
+        <div class="group">
+          <h3>Research</h3>
+          <ul class="rows">
+            <li>
+              <button class="row project-card" data-project="drone">
+                <span class="row-title">3D-printed carbon-fiber quadcopter frame <span class="status">In progress</span></span>
+                <span class="row-sum">My honors thesis. I'm reproducing a commercial 7-inch carbon-fiber frame in 3D-printed carbon-fiber filament, then comparing how the two hold up under flight and landing loads.</span>
+                <span class="row-when">Aug 2026 – now <span>PACLAB, Penn State</span></span>
+                <span class="row-open" aria-hidden="true">+</span>
+              </button>
+            </li>
+            <li>
+              <button class="row project-card" data-project="lotka">
+                <span class="row-title">One predator, two prey</span>
+                <span class="row-sum">A 3D nonlinear ODE model that extends Lotka-Volterra to a wolf spider and two prey species. I'm second of six authors on the manuscript. It's the plot at the top of this page.</span>
+                <span class="row-when">May 2025 – Jan 2026 <span>Penn State Behrend</span></span>
+                <span class="row-open" aria-hidden="true">+</span>
+              </button>
+            </li>
+          </ul>
         </div>
-      </div>
 
-      <div class="hero-stat-row">
-        <div class="hero-stat">
-          <span>20+</span>
-          <p>Engineering projects & labs</p>
+        <div class="group">
+          <h3>Internship and teams</h3>
+          <ul class="rows">
+            <li>
+              <button class="row project-card" data-project="thermal">
+                <span class="row-title">Drone thermal mapping for solar siting</span>
+                <span class="row-sum">Merged drone thermal imagery into orthomosaics and built a MATLAB pipeline that maps rooftop surface temperatures to find the best areas for solar panels.</span>
+                <span class="row-when">Jun – Aug 2026 <span>Pittsburgh Drone Services</span></span>
+                <span class="row-open" aria-hidden="true">+</span>
+              </button>
+            </li>
+            <li>
+              <button class="row project-card" data-project="avt">
+                <span class="row-title">EV drive-unit benchmarking for EcoCAR <span class="status">In progress</span></span>
+                <span class="row-sum">Comparing 10+ drive units against the Chevrolet Blazer EV on power, torque, efficiency, and cost for a rear-motor swap.</span>
+                <span class="row-when">Sept 2026 – now <span>Penn State Advanced Vehicle Team</span></span>
+                <span class="row-open" aria-hidden="true">+</span>
+              </button>
+            </li>
+            <li>
+              <button class="row project-card" data-project="rov">
+                <span class="row-title">MATE underwater ROV</span>
+                <span class="row-sum">Machined frame parts on a CNC router, integrated the thrusters, and led two teams of 15+ students. We won Best Engineering Presentation.</span>
+                <span class="row-when">Aug 2021 – Jun 2025 <span>Lead mechanical contributor</span></span>
+                <span class="row-open" aria-hidden="true">+</span>
+              </button>
+            </li>
+          </ul>
         </div>
-        <div class="hero-stat">
-          <span>1</span>
-          <p>Forthcoming publication</p>
+
+        <div class="group">
+          <h3>Builds</h3>
+          <ul class="rows">
+            <li>
+              <button class="row project-card" data-project="linefollower">
+                <span class="row-title">Autonomous line-following vehicle</span>
+                <span class="row-sum">An Arduino vehicle that tracks a line with photoresistor arrays. I wrote the C++ control code that adjusts motor PWM to correct its path in real time.</span>
+                <span class="row-when">Nov 2024 – Jan 2025 <span>Arduino, C++</span></span>
+                <span class="row-open" aria-hidden="true">+</span>
+              </button>
+            </li>
+            <li>
+              <button class="row project-card" data-project="rootline">
+                <span class="row-title">Rootline</span>
+                <span class="row-sum">Money plans for immigrant families: a step-by-step credit plan, a milestone timeline for each child, and an advice checker where every claim links to a source. A solo build for the FNB Challenge.</span>
+                <span class="row-when">Oct 2026 <span>HackPSU</span></span>
+                <span class="row-open" aria-hidden="true">+</span>
+              </button>
+            </li>
+            <li>
+              <button class="row project-card" data-project="hackpsu">
+                <span class="row-title">Uplift</span>
+                <span class="row-sum">A student wellness app with a companion that nudges you to take breaks, sorts your coursework by urgency, and keeps crisis resources one tap away.</span>
+                <span class="row-when">Mar 2026 <span>HackPSU</span></span>
+                <span class="row-open" aria-hidden="true">+</span>
+              </button>
+            </li>
+          </ul>
         </div>
-        <div class="hero-stat">
-          <span>15+</span>
-          <p>Students led (MATE ROV)</p>
+
+        <div class="group">
+          <h3>Simulation and lab studies</h3>
+          <div class="studies">
+            <button class="study project-card" data-project="fea">
+              <span class="study-img"><img src="images/fea_thermal.png" alt="Cross-section of a graphite sphere showing its internal temperature gradient" /></span>
+              <span class="study-body">
+                <span class="row-title">Nine finite element studies</span>
+                <span class="row-sum">Beam bending, stress concentration, modal, nonlinear, impact, and transient thermal analysis in SolidWorks Simulation, each checked against hand calculations.</span>
+                <span class="study-when">Spring 2026</span>
+              </span>
+            </button>
+            <button class="study project-card" data-project="cfd">
+              <span class="study-img"><img src="images/cfd_nozzle.png" alt="Velocity plot of flow through a converging-diverging nozzle" /></span>
+              <span class="study-body">
+                <span class="row-title">Five CFD studies</span>
+                <span class="row-sum">Boundary layers, pipe flow, nozzle design, and vortex shedding in SolidWorks Flow Simulation, with Reynolds sweeps and mesh-independence checks.</span>
+                <span class="study-when">Spring 2026</span>
+              </span>
+            </button>
+            <button class="study project-card" data-project="manufacturing">
+              <span class="study-img"><img src="images/mfg_process_capability.svg" alt="Run chart of ten sand-cast flange diameters drifting above the upper specification limit" /></span>
+              <span class="study-body">
+                <span class="row-title">Ten manufacturing process labs</span>
+                <span class="row-sum">Casting, forming, machining, welding, and injection molding, with process capability studies, Taylor tool-life modeling, and hardness profiles.</span>
+                <span class="study-when">Spring 2026, IE 312</span>
+              </span>
+            </button>
+          </div>
         </div>
-        <div class="hero-stat">
-          <span>3.67</span>
-          <p>GPA · Honors Program</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Projects -->
-    <section id="projects">
-      <div class="section-eyebrow">Work</div>
-      <div class="section-title">Projects & research</div>
-      <div class="projects-grid">
-
-        <button class="project-card" data-project="ballplate">
-          <div class="project-thumb">⚖️</div>
-          <div class="project-body">
-            <span class="project-tag">Control Systems · RL</span>
-            <h3>Self-Balancing Ball & Plate System</h3>
-            <p>2-DOF active stabilization platform with PID baseline on Arduino. Developing a reinforcement learning agent (PPO / PyTorch) in a custom Gymnasium simulation, then deploying trained policies to hardware for head-to-head comparison with classical control.</p>
-          </div>
-        </button>
-
-        <button class="project-card" data-project="lotka">
-          <div class="project-thumb">🔬</div>
-          <div class="project-body">
-            <span class="project-tag">Research · Math Modeling</span>
-            <h3>Predator–Prey ODE Research</h3>
-            <p>Developed a 3D non-linear ODE model extending Lotka-Volterra to one predator / two prey. Applied Jacobian linearization and Center Manifold Theorem; validated with MATLAB phase-plane simulations. Co-authoring a forthcoming publication on time-reversal symmetry.</p>
-          </div>
-        </button>
-
-        <button class="project-card" data-project="linefollower">
-          <div class="project-thumb">🚗</div>
-          <div class="project-body">
-            <span class="project-tag">Embedded Systems</span>
-            <h3>Autonomous Line-Following Vehicle</h3>
-            <p>Designed and built an autonomous vehicle with Arduino and photoresistor arrays for closed-loop path tracking. Wrote C++ algorithms for real-time sensor processing and PWM motor control, plus a custom chassis optimized for sensor placement.</p>
-          </div>
-        </button>
-
-        <button class="project-card" data-project="rov">
-          <div class="project-thumb">🤿</div>
-          <div class="project-body">
-            <span class="project-tag">Mechanical Design · Leadership</span>
-            <h3>MATE UROV — Remotely Operated Vehicle</h3>
-            <p>Lead mechanical contributor on hydrodynamic, neutrally buoyant ROV for MATE competition. Directed systems integration across mechanical, electrical, and propulsion subsystems. Managed two teams of 15+ students. Won Best Engineering Presentation.</p>
-          </div>
-        </button>
-
-        <button class="project-card" data-project="hackpsu">
-          <div class="project-thumb">🌱</div>
-          <div class="project-body">
-            <span class="project-tag">Full-Stack · Hackathon</span>
-            <h3>Uplift — Student Wellness Companion</h3>
-            <p>A mobile-first student wellness app built in 36 hours at HackPSU. Features Clover, a gamified Quokka companion that pairs context-aware nudges, LMS schedule sync, and a crisis safety net to help students balance academic load with mental and physical well-being.</p>
-          </div>
-        </button>
-
-        <button class="project-card" data-project="fea">
-          <div class="project-thumb">
-            <img src="images/fea_thermal.png" alt="FEA thermal simulation" />
-          </div>
-          <div class="project-body">
-            <span class="project-tag">FEA · 9 Studies</span>
-            <h3>Finite Element Analysis Studies</h3>
-            <p>Nine FEA projects in SolidWorks Simulation covering beam bending, stress concentration, mesh convergence, modal analysis, nonlinear springs, impact dynamics, and transient thermal analysis. Each study paired analytical hand calculations with simulation results to validate accuracy and characterize error.</p>
-          </div>
-        </button>
-
-        <button class="project-card" data-project="cfd">
-          <div class="project-thumb">
-            <img src="images/cfd_nozzle.png" alt="CFD nozzle simulation" />
-          </div>
-          <div class="project-body">
-            <span class="project-tag">CFD · 5 Studies</span>
-            <h3>Computational Fluid Dynamics Studies</h3>
-            <p>Five CFD projects in SolidWorks Flow Simulation covering flat-plate boundary layers, laminar and turbulent pipe flow, converging-diverging nozzle design, and 2D vortex shedding. Each study included Reynolds number sweeps, mesh independence checks, and validation against analytical theory.</p>
-          </div>
-        </button>
-
-        <button class="project-card" data-project="manufacturing">
-          <div class="project-thumb">🛠️</div>
-          <div class="project-body">
-            <span class="project-tag">Manufacturing · 10 Labs</span>
-            <h3>Manufacturing Processes Lab Series</h3>
-            <p>Ten IE 312 lab reports covering casting, forming, machining, joining, powder metallurgy, ceramic processing, and polymer injection molding. Each lab combined hands-on shop work with quantitative analysis — process capability studies, Taylor tool life modeling, hardness profiles, and cost trade-off analyses.</p>
-          </div>
-        </button>
-
       </div>
     </section>
 
     <!-- About -->
-    <section id="about">
-      <div class="section-eyebrow">Background</div>
-      <div class="section-title">About me</div>
-      <div class="about-grid">
-
-        <div class="about-card">
-          <div class="about-initials">NG</div>
-          <h3>Neiil Gandhi</h3>
-          <p class="role">Mechanical Engineering, Penn State '27</p>
-
-          <div class="about-detail">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            State College, PA
+    <section class="section" id="about">
+      <div class="wrap">
+        <h2>About</h2>
+        <div class="about">
+          <div class="about-text">
+            <p>I'm a mechanical engineering student and Schreyer Honors Scholar at Penn State. I like problems that sit between physical systems and computation, where a differential equation becomes a working machine.</p>
+            <p>My honors thesis in the Pangborn Advanced Controls Lab (PACLAB) reproduces a commercial 7-inch carbon-fiber quadcopter frame in 3D-printed carbon-fiber filament, with autonomous waypoint flight in a motion-capture space as the goal. Before that I spent a summer at Pittsburgh Drone Services mapping rooftop temperatures for solar siting, and did research at Penn State Behrend on predator-prey population dynamics.</p>
+            <p>Outside the lab, I'm on the Advanced Vehicle Team's powertrain control module team for the EcoCAR Innovation Challenge, and I manage sponsorship for Infusion, Penn State's intercollegiate South Asian dance competition. Earlier I founded the Penn State Behrend Pickleball Club and spent four years on a MATE underwater ROV team, where I learned that good engineering is as much about coordination and communication as it is about calculation.</p>
           </div>
-          <div class="about-detail">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            npg5444@psu.edu
-          </div>
-          <div class="about-detail">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-            linkedin.com/in/neiilgandhi
-          </div>
+          <dl class="facts">
+            <div><dt>Based in</dt><dd>State College, PA</dd></div>
+            <div><dt>Email</dt><dd><a href="mailto:npg5444@psu.edu">npg5444@psu.edu</a></dd></div>
+            <div><dt>Elsewhere</dt><dd><a href="https://linkedin.com/in/neiilgandhi" target="_blank" rel="noopener">linkedin.com/in/neiilgandhi</a></dd><dd><a href="https://github.com/neiilgandhi" target="_blank" rel="noopener">github.com/neiilgandhi</a></dd></div>
+            <div><dt>Honors</dt><dd>Schreyer Honors College</dd><dd>The President Walker Award, 2024</dd><dd>Behrend Honors Program, 2024 – 2025</dd></div>
+          </dl>
         </div>
-
-        <div class="about-text">
-          <p>I'm a junior mechanical engineering student at Penn State with a focus on dynamics, control systems, and applied mathematics. I'm drawn to problems that sit at the intersection of physical systems and computation — where a differential equation becomes a working machine.</p>
-          <p>My research at Penn State Behrend modeled predator-prey population dynamics using non-linear ODEs, and I'm currently building a ball-and-plate stabilization platform that uses reinforcement learning to outperform classical PID control.</p>
-          <p>Outside the lab, I founded Penn State Behrend's Pickleball Club and served as lead mechanical contributor on the MATE ROV team, where I learned that good engineering is as much about coordination and communication as it is about calculation.</p>
-          <p>I'm a member of Nittany Motorsports (Formula SAE) and Nittany Rocket Labs, and a recipient of the President Walker Award and Behrend Honors Program.</p>
-        </div>
-
       </div>
     </section>
 
     <!-- Skills -->
-    <section id="skills">
-      <div class="section-eyebrow">Capabilities</div>
-      <div class="section-title">Skills & tools</div>
-      <div class="skills-layout">
-
-        <div class="skill-group">
-          <h4>CAD & Design</h4>
-          <div class="skill-tags">
-            <span class="skill-tag">SolidWorks</span>
-            <span class="skill-tag">Fusion 360</span>
-            <span class="skill-tag">AutoCAD</span>
-          </div>
-        </div>
-
-        <div class="skill-group">
-          <h4>Simulation & Analysis</h4>
-          <div class="skill-tags">
-            <span class="skill-tag">FEA</span>
-            <span class="skill-tag">CFD</span>
-            <span class="skill-tag">MATLAB</span>
-          </div>
-        </div>
-
-        <div class="skill-group">
-          <h4>Programming</h4>
-          <div class="skill-tags">
-            <span class="skill-tag">Python</span>
-            <span class="skill-tag">C++</span>
-            <span class="skill-tag">LaTeX</span>
-          </div>
-        </div>
-
-        <div class="skill-group">
-          <h4>Embedded & Control</h4>
-          <div class="skill-tags">
-            <span class="skill-tag">Arduino</span>
-            <span class="skill-tag">PID Control</span>
-            <span class="skill-tag">PyTorch</span>
-            <span class="skill-tag">Gymnasium</span>
-          </div>
-        </div>
-
-        <div class="skill-group">
-          <h4>Coursework</h4>
-          <div class="skill-tags">
-            <span class="skill-tag">Dynamics</span>
-            <span class="skill-tag">Thermodynamics</span>
-            <span class="skill-tag">Vibrations</span>
-            <span class="skill-tag">Strength of Materials</span>
-          </div>
-        </div>
-
-        <div class="skill-group">
-          <h4>Memberships</h4>
-          <div class="skill-tags">
-            <span class="skill-tag">Formula SAE</span>
-            <span class="skill-tag">Rocket Labs</span>
-            <span class="skill-tag">Honors Program</span>
-          </div>
-        </div>
-
+    <section class="section" id="skills">
+      <div class="wrap">
+        <h2>Skills</h2>
+        <dl class="skills">
+          <div><dt>CAD and simulation</dt><dd>SolidWorks, Fusion 360, AutoCAD, finite element analysis, computational fluid dynamics</dd></div>
+          <div><dt>Robotics and controls</dt><dd>ROS 2 (Crazyswarm2), QGroundControl, Linux, MATLAB/Simulink, RoadRunner</dd></div>
+          <div><dt>Manufacturing</dt><dd>CNC machining (router), FDM 3D printing</dd></div>
+          <div><dt>Programming and embedded</dt><dd>Python, C++, MATLAB, Arduino, embedded systems</dd></div>
+          <div><dt>Coursework</dt><dd>Mechatronics, mechanical design, design methodology, fluid flow, vibrations, dynamics, thermodynamics, strength of materials</dd></div>
+        </dl>
       </div>
     </section>
 
     <!-- Contact -->
-    <section id="contact">
-      <div class="section-eyebrow">Get in touch</div>
-      <div class="section-title">Contact</div>
-      <p class="contact-intro">Open to research collaborations, internships, and engineering roles. Feel free to reach out.</p>
-      <div class="contact-links">
-        <a href="mailto:npg5444@psu.edu" class="contact-link">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          npg5444@psu.edu
-        </a>
-        <a href="https://linkedin.com/in/neiilgandhi" target="_blank" class="contact-link">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-          LinkedIn
-        </a>
-        <a href="tel:4125060571" class="contact-link">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.32h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6 6l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          412-506-0571
-        </a>
-        <a href="Neiil_Gandhi_Resume.pdf" download class="contact-link">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9,15 12,18 15,15"/></svg>
-          Download resume
-        </a>
+    <section class="section contact" id="contact">
+      <div class="wrap">
+        <h2>Get in touch</h2>
+        <p class="section-intro">I'm open to internships, engineering roles in mechanical design and robotics, and research collaborations.</p>
+        <a class="contact-mail" href="mailto:npg5444@psu.edu">npg5444@psu.edu</a>
+        <ul class="contact-links">
+          <li><a class="btn" href="https://linkedin.com/in/neiilgandhi" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a class="btn" href="https://github.com/neiilgandhi" target="_blank" rel="noopener">GitHub</a></li>
+          <li><a class="btn" href="tel:4125060571">412-506-0571</a></li>
+          <li><a class="btn" href="Neiil_Gandhi_Resume.pdf" download>Download resume</a></li>
+        </ul>
       </div>
     </section>
 
-  </div>
+  </main>
 
   <footer>
-    <p>© 2026 Neiil Gandhi · Mechanical Engineer · Penn State '27</p>
+    <div class="wrap">
+      <span>© 2026 Neiil Gandhi</span>
+      <span>Mechanical Engineering, Penn State, Fall 2027</span>
+    </div>
   </footer>
 
-  <!-- Project Detail Modal -->
+  <!-- Project panel -->
   <div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <div class="modal" id="modalContent">
-      <button class="modal-close" id="modalClose" aria-label="Close">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-      </button>
+      <button class="modal-close" id="modalClose">Close</button>
       <div id="modalBody"></div>
     </div>
   </div>
@@ -887,35 +588,71 @@
   <script>
     // ── Project detail data ──
     const projectData = {
-      ballplate: {
-        tag: "Control Systems · Reinforcement Learning",
-        title: "Self-Balancing Ball & Plate System",
-        meta: "April 2026 – Present",
-        overview: "A 2-DOF active stabilization platform that keeps a steel ball balanced on a plate in real time. The project compares classical PID control against a reinforcement learning agent trained in simulation and deployed to hardware — exploring whether learned policies can outperform tuned controllers on a real mechatronic system.",
+      drone: {
+        tag: "Honors thesis, additive manufacturing",
+        title: "3D-printed carbon-fiber quadcopter frame",
+        meta: "Aug 2026 – present, Pangborn Advanced Controls Lab (PACLAB), Penn State",
+        overview: "My Schreyer Honors thesis asks how close a 3D-printed airframe can get to a conventional one. I'm reproducing a commercial 7-inch carbon-fiber quadcopter frame in 3D-printed carbon-fiber filament and comparing how the two respond structurally. The work is in progress.",
         contributions: [
-          "Engineered a 2-DOF platform with servo-driven tilt actuation and resistive touch sensing on Arduino.",
-          "Established a baseline closed-loop PID architecture maintaining dynamic equilibrium of the ball.",
-          "Built a custom Gymnasium physics simulation for training a PPO agent in PyTorch + Stable Baselines3.",
-          "Iteratively deploying trained RL policies to the microcontroller for direct comparative analysis."
+          "Reproducing a commercial 7-inch carbon-fiber quadcopter frame in 3D-printed carbon-fiber filament, using SolidWorks FEA to compare its structural response to the original under flight and landing loads.",
+          "Rapidly prototyped and iterated on the drone frame over three weeks using a Bambu Lab X1E 3D printer.",
+          "Developing autonomous waypoint flight in a motion-capture space using ROS 2 on Linux."
         ],
-        stack: ["Arduino", "C++", "PID Control", "PyTorch", "Stable Baselines3", "Gymnasium", "SolidWorks"]
+        stack: ["SolidWorks FEA", "Bambu Lab X1E", "Carbon-fiber filament", "ROS 2 (Crazyswarm2)", "Linux", "Motion capture"]
       },
       lotka: {
-        tag: "Research · Mathematical Modeling",
-        title: "Predator–Prey ODE Research",
-        meta: "May 2025 – Jan 2026 · Penn State Behrend",
-        overview: "Research developing a three-dimensional non-linear ODE system that extends the classical Lotka-Volterra equations to model one predator (wolf spider) interacting with two prey species (beetles and grasshoppers). The work proves mathematical time-reversal symmetry between 1-predator/2-prey and 2-predator/1-prey systems.",
+        tag: "Research, Mathematical Modeling",
+        title: "One predator, two prey",
+        meta: "May 2025 – Jan 2026, Undergraduate Research Assistant, Penn State Behrend",
+        overview: "Research developing a three-dimensional non-linear ODE system that extends the classical Lotka-Volterra equations to model one predator (wolf spider) interacting with two prey species (beetles and grasshoppers). The work proves that the 1-predator/2-prey and 2-predator/1-prey systems are equivalent under time reversal.",
         contributions: [
           "Developed a 3D non-linear ODE model simulating multi-species ecological dynamics.",
           "Applied Jacobian linearization, Center Manifold Theorem, and trapping regions to find equilibrium points.",
           "Used MATLAB to generate 3D phase-plane trajectories validating bounded population behavior.",
-          "Co-authored a forthcoming publication: \"One Predator, Two Prey Lotka-Volterra Based Model\" (Galiffa, Gandhi, et al.)."
+          "Second author of six on the manuscript \"A one-predator, two-prey model, and a two-predator, one-prey model, inspired by Wolf spider (Lycosidae) populations.\""
         ],
         stack: ["MATLAB", "ODE/PDE", "Dynamical Systems", "LaTeX", "Linear Algebra"]
       },
+      thermal: {
+        tag: "Internship, thermal imaging",
+        title: "Drone thermal mapping for solar siting",
+        meta: "Jun – Aug 2026, Engineering Intern, Pittsburgh Drone Services",
+        overview: "Surface temperature directly affects how well a solar panel performs, and a drone thermal survey shows where a neighborhood runs hot. During my internship I turned raw drone thermal imagery of two Pittsburgh neighborhoods into a picture of which rooftops are good candidates for solar.",
+        contributions: [
+          "Merged drone thermal imagery into orthomosaics and built a MATLAB pipeline mapping rooftop surface temperatures (34–156°F) to identify the best areas for solar panels.",
+          "Modeled photovoltaic efficiency loss from surface temperature: 0.27% average loss on residential roofs versus up to 17.5% on 156°F industrial roofs, pointing siting toward elevated racking and reflective coatings.",
+          "Applied Z-score filtering and land-cover binning to isolate extreme heat to 5.98% of surface area.",
+          "Analyzed and wrote site reports for two Pittsburgh neighborhoods, Larimer and Manchester, in QGIS."
+        ],
+        stack: ["MATLAB", "QGIS", "GeoTIFF orthomosaics", "Thermal imaging", "Z-score filtering"]
+      },
+      avt: {
+        tag: "Vehicle team, powertrain",
+        title: "EV drive-unit benchmarking for EcoCAR",
+        meta: "Sept 2026 – present, Powertrain Control Module (PCM) team, Penn State Advanced Vehicle Team",
+        overview: "The Penn State Advanced Vehicle Team competes in the EcoCAR Innovation Challenge with a Chevrolet Blazer EV. I'm on the Powertrain Control Module team, where the open question is which drive unit to use for a rear-motor swap.",
+        contributions: [
+          "Benchmarking 10+ EV drive units from Porsche, Hyundai, BMW, AAM, Bosch, and Magna against the Chevrolet Blazer EV on power, torque, efficiency, and cost for a rear-motor swap.",
+          "Supporting vehicle modeling and simulation in MATLAB/Simulink and RoadRunner."
+        ],
+        stack: ["MATLAB/Simulink", "RoadRunner", "Powertrain benchmarking"]
+      },
+      rov: {
+        tag: "Mechanical design, leadership",
+        title: "MATE underwater ROV",
+        meta: "Aug 2021 – Jun 2025, Lead Mechanical Contributor and Mentor",
+        overview: "Four years as lead mechanical contributor and mentor on a neutrally buoyant underwater robot for the MATE ROV competition. Beyond building the vehicle, the role was coordinating multidisciplinary teams and delivering against strict competition constraints. The team earned the Best Engineering Presentation award.",
+        contributions: [
+          "Machined frame components on a CNC router, integrated thrusters, and connected the vehicle to QGroundControl for piloting and telemetry.",
+          "Led two multidisciplinary teams of 15+ students across mechanical, electrical, and propulsion subsystems for the RANGER and SCOUT classes.",
+          "Refined iterative designs for reliability, manufacturability, and competition compliance.",
+          "Earned the Best Engineering Presentation award."
+        ],
+        stack: ["SolidWorks", "CNC router", "QGroundControl", "Systems integration", "Team leadership"]
+      },
       linefollower: {
         tag: "Embedded Systems",
-        title: "Autonomous Line-Following Vehicle",
+        title: "Autonomous line-following vehicle",
         meta: "Nov 2024 – Jan 2025",
         overview: "A small autonomous vehicle that follows a path using continuous photoresistor sensing and closed-loop motor control. The project covered the full stack — mechanical chassis, sensor circuit, and real-time C++ control software — and was a foundational exercise in mechatronics integration.",
         contributions: [
@@ -926,25 +663,30 @@
         ],
         stack: ["Arduino", "C++", "Embedded C", "PWM Control", "Sensor Fusion", "CAD"]
       },
-      rov: {
-        tag: "Mechanical Design · Leadership",
-        title: "MATE UROV — Remotely Operated Vehicle",
-        meta: "Aug 2021 – June 2025 · Lead Mechanical Contributor",
-        overview: "Multi-year role as lead mechanical contributor and mentor on a hydrodynamic, neutrally buoyant Remotely Operated Vehicle for the MATE competition. Beyond design, the role centered on coordinating multidisciplinary teams and delivering against strict competition constraints. The team earned the Best Engineering Presentation award.",
+      rootline: {
+        tag: "Web App, Solo Hackathon Build",
+        title: "Rootline: money plans for immigrant families",
+        meta: "HackPSU Fall 2026, FNB Challenge: Trust, Decisions & Financial Confidence",
+        overview: "Existing tools help one person get a credit card; nothing helps a family see what's coming. Rootline is a single-page web app that walks an immigrant family from a parent's first credit card to each child's biggest milestones, including deadlines that are easy to miss until it's too late. I built it solo at HackPSU Fall 2026, and trust was the design constraint: every claim links to its source, and the app says so when it doesn't know.",
         contributions: [
-          "Directed mechanical design and systems integration for a neutrally buoyant ROV.",
-          "Managed two multidisciplinary teams of 15+ students across RANGER and SCOUT competition classes.",
-          "Coordinated integration of mechanical, electrical, and propulsion subsystems.",
-          "Refined iterative designs to ensure reliability, manufacturability, and competition compliance.",
-          "Earned Best Engineering Presentation award."
+          "Built a five-tab app: family intake, a step-by-step credit plan, a kids' timeline to age 21, an advice checker, and a question tab that answers in five languages.",
+          "Wrote a rules engine in plain JavaScript for the plan, timeline, savings tracker, and safety-fund calculator, so the same family always gets the same answer and no numbers come from AI.",
+          "Assembled 20 fact cards checked against sources including the CFPB, IRS, SSA, FTC, and USCIS, with confidence labels on every claim.",
+          "Set guardrails for the AI-backed tabs: answers cite sources, immigration questions are referred to a licensed attorney, and no specific bank or card is ever recommended.",
+          "Kept it private by design: no Social Security or account numbers are requested, and answers are saved only in the browser.",
+          "Shipped as a single page with no build step and no server."
         ],
-        stack: ["SolidWorks", "Hydrodynamics", "Systems Integration", "GD&T", "Team Leadership"]
+        stack: ["HTML", "CSS", "JavaScript", "Rules engine", "GitHub Pages"],
+        links: [
+          { label: "Try the live app", href: "https://neiilgandhi.github.io/rootline/" },
+          { label: "View the code", href: "https://github.com/neiilgandhi/rootline" }
+        ]
       },
       hackpsu: {
-        tag: "Full-Stack · 36-Hour Hackathon",
-        title: "Uplift — Student Wellness Companion",
-        meta: "HackPSU 2026 · 36-Hour Build · v1.0.0",
-        overview: "Uplift is a mobile-first student wellness and productivity app built in 36 hours to help college students balance academic intensity with mental and physical well-being. The platform pairs users with Clover — an animated Quokka companion — to make wellness tracking, schedule management, and stress reduction feel engaging instead of clinical. The core insight: gamification done right turns daily check-ins from a chore into something students actually look forward to.",
+        tag: "Full-stack, hackathon",
+        title: "Uplift: a student wellness companion",
+        meta: "HackPSU, Mar 2026",
+        overview: "Uplift is a mobile-first student wellness and productivity app built at HackPSU to help college students balance academic intensity with mental and physical well-being. The platform pairs users with Clover — an animated Quokka companion — to make wellness tracking, schedule management, and stress reduction feel engaging instead of clinical. The core insight: gamification done right turns daily check-ins from a chore into something students actually look forward to.",
         contributions: [
           "Designed and built a five-view application architecture (Home, Profile, Journal, Schedule, Help) with a calming UI palette of creams, soft pinks, and muted blues — chosen specifically to reduce anxiety in stressed users.",
           "Built the companion engine featuring Clover, an animated Quokka with a leveling system, streak tracking, and relationship metrics (Days Together, Check-ins) to incentivize daily engagement through positive reinforcement.",
@@ -955,15 +697,15 @@
           "Built a daily calendar aggregator that merges academic timetables with wellness habits into a single timeline — mapping lectures, study groups, mandatory breaks, and dedicated wellness intervals.",
           "Designed a Crisis Safety Net with a 24/7 high-visibility Emergency Override button surfacing crisis resources at the top of the help center — prioritizing user safety above feature discoverability.",
           "Implemented privacy controls with optional data-sharing toggles to send wellness insights to an emergency contact, balancing companion utility with user autonomy.",
-          "Architected the Python/Flask backend, resolved real-time integration bugs with the React frontend, and shipped a functional v1.0.0 within the 36-hour deadline."
+          "Architected the Python/Flask backend, resolved real-time integration bugs with the React frontend, and shipped a functional v1.0.0 before the hackathon deadline."
         ],
         stack: ["Python", "Flask", "React", "Next.js", "REST APIs", "State Machines", "Mobile-First Design", "Git"]
       },
       fea: {
-        tag: "Finite Element Analysis · Structural",
-        title: "Finite Element Analysis Studies",
-        meta: "ME 330 Coursework · Spring 2026",
-        overview: "A series of eight FEA studies in SolidWorks Simulation covering beam bending, stress concentration, vibration modes, nonlinear materials, impact dynamics, and thermal transient analysis. Each project paired a hand-calculated analytical solution with a simulation, then compared the two to understand where discretization, geometry, or model assumptions caused divergence — building real intuition for when to trust FEA output.",
+        tag: "Finite Element Analysis, Structural",
+        title: "Nine finite element studies",
+        meta: "ME 330 coursework, Spring 2026",
+        overview: "A series of nine FEA studies in SolidWorks Simulation covering beam bending, stress concentration, vibration modes, nonlinear materials, impact dynamics, and thermal transient analysis. Each project paired a hand-calculated analytical solution with a simulation, then compared the two to understand where discretization, geometry, or model assumptions caused divergence — building real intuition for when to trust FEA output.",
         contributions: [
           "Beam loading & shear-moment analysis: Built a 6.5m elliptical alloy steel beam in SolidWorks Simulation under distributed loading; produced shear, moment, and displacement plots and verified against hand-calculated reactions and stresses (% differences under 1%).",
           "Stress concentration on a notched plate: Compared analytical Kt-based stress on a notched tension plate (234.8 psi) to multiaxial von Mises FEA result (264.0 psi); explained the gap as 1D infinite-plate assumption vs. 3D finite-plate reality.",
@@ -980,13 +722,15 @@
           { src: "images/fea_beam_stress.png", caption: "Beam bending stress contour — elliptical steel beam under distributed load." },
           { src: "images/fea_spring.png", caption: "Nonlinear spring shear stress (134.9 MPa max) — validated against Wahl-corrected theory." },
           { src: "images/fea_thermal.png", caption: "Graphite ball transient thermal — cross-section showing internal temperature gradient at 100,000 s." },
-          { src: "images/fea_hollow_beam.png", caption: "Hollow square 6061-T4 beam — von Mises stress distribution under transverse load." }
+          { src: "images/fea_hollow_beam.png", caption: "Hollow square 6061-T4 beam — von Mises stress distribution under transverse load." },
+          { src: "images/fea_notched_plate.png", caption: "Notched plate in tension: stress concentrates at the notch, peaking near 265 psi." },
+          { src: "images/fea_pliers_stress.png", caption: "Needle-nose pliers under a 20 lbf grip: peak von Mises stress stays below the yield strength." }
         ]
       },
       cfd: {
         tag: "Computational Fluid Dynamics",
-        title: "Computational Fluid Dynamics Studies",
-        meta: "Coursework · Spring 2026",
+        title: "Five CFD studies",
+        meta: "Coursework, Spring 2026",
         overview: "Five CFD projects in SolidWorks Flow Simulation spanning external boundary layers, internal pipe flow development, turbulent flow, and converging-diverging nozzle design. Each study included a Reynolds number sweep, mesh independence verification, and side-by-side comparison of simulation results to analytical predictions — with explicit attention to where and why the two agreed or diverged.",
         contributions: [
           "Flat-plate boundary layer (laminar & turbulent): Simulated both regimes at multiple velocities; produced boundary layer profiles, wall shear stress, and skin friction coefficient plots. Validated Cf against theoretical correlations across the full plate length.",
@@ -1002,33 +746,44 @@
         stack: ["SolidWorks Flow Simulation", "CFD", "Boundary Layer Theory", "Reynolds Number Analysis", "Mesh Convergence", "Turbulent Flow", "Nozzle Design", "Vortex Shedding"],
         images: [
           { src: "images/cfd_boundary_layer.png", caption: "Flat-plate boundary layer — laminar vs. turbulent velocity profiles and wall shear stress decay." },
-          { src: "images/cfd_nozzle.png", caption: "Converging-diverging nozzle — axial velocity cut plot showing flow separation at cone angle θ ≈ 10°." }
+          { src: "images/cfd_nozzle.png", caption: "Converging-diverging nozzle — axial velocity cut plot showing flow separation at cone angle θ ≈ 10°." },
+          { src: "images/cfd_nozzle_r100.png", caption: "Nozzle with a 0.10 m exit radius (10.3° cone angle): the flow begins to separate at the outlet." },
+          { src: "images/cfd_nozzle_r110.png", caption: "Nozzle with a 0.11 m exit radius (12.9° cone angle): axial velocity at the outlet edge falls to nearly zero." },
+          { src: "images/cfd_pipe_velocity.png", caption: "Laminar pipe flow with a fully developed inlet, fine mesh: the velocity profile holds steady along the whole pipe." },
+          { src: "images/cfd_pipe_pressure.png", caption: "The same pipe: pressure falls steadily toward the outlet as the flow overcomes wall friction." },
+          { src: "images/cfd_vortex_shedding.svg", caption: "Vortex shedding behind a cylinder: a steady wake up to Re = 20, then a shedding frequency that climbs with Reynolds number." }
         ]
       },
       manufacturing: {
-        tag: "Manufacturing · IE 312 Lab Series",
-        title: "Manufacturing Processes — 10 Lab Reports",
-        meta: "IE 312 Coursework · Spring 2026",
+        tag: "Manufacturing, IE 312 Lab Series",
+        title: "Ten manufacturing process labs",
+        meta: "IE 312 coursework, Spring 2026",
         overview: "A ten-lab sequence covering the major manufacturing process families: casting, forming, machining, joining, powder metallurgy, ceramic processing, and polymer/composites. Each lab combined hands-on shop experience with quantitative data analysis — process capability studies, Taylor tool life modeling, hardness-to-tensile correlations, Vickers profiles across heat-affected zones, and cost trade-off analyses. The full sequence trained engineering judgment about why processes behave the way they do, not just how to run them.",
         contributions: [
           "Metal casting — fluidity & solidification: Tested A356 aluminum fluidity from 1200°F to 1500°F, showing 78% increase in flow distance with superheat. Quantified mold material effects: iron molds solidified in <90s while green sand took >1000s.",
           "Metal casting II — dump cylinder & cooling curves: Analyzed solidified wall thickness as a function of mold temperature, pouring temperature, and dump time. Identified Sn-Pb alloy composition (~40% Sn / 60% Pb) by matching cooling curve plateaus to the eutectic temperature at 361°F.",
           "Hardness testing: Rockwell and Brinell tests on 11 alloys (steels, aluminum, brass). Demonstrated strengthening mechanisms — carbon content (1018 HR → 1080 HR: 172 → 301 HB), heat treatment (1080 Q&T: 362 HB), precipitation hardening (6061-T6 vs. 6061-0), and cold working. UTS estimates within 4% of literature for carbon steels.",
           "Metal forming — cold rolling: Cold rolled Al 6061 and Brass 360 across three passes (up to 51% reduction). Quantified strain hardening: Brass 360-0 hardness jumped from 67.1 to 85.9 Rockwell Superficial. Documented anisotropy in cold-rolled Al 5083 (longitudinal vs. long-transverse strength).",
-          "Powder metallurgy & surface roughness: Compared profilometer measurements to visual comparator estimates across extruded aluminum, HR 1020 steel, and brass — showing visual estimates consistently 4–10× higher than actual. Calculated solid-solid shrinkage (5.59% for aluminum metal molds vs. 4.06% for sand molds).",
+          "Powder metallurgy & surface roughness: Compared profilometer measurements to visual comparator estimates across extruded aluminum, HR 1020 steel, and brass — showing visual estimates 2 to 9 times higher than measured. Calculated solid-solid shrinkage (5.59% for aluminum metal molds vs. 4.06% for sand molds).",
           "Ceramic processing & process capability: Conducted Cp/Cpk analysis on sand cast, investment cast, and forged parts. Only investment casting met Cpk ≥ 1.33; sand casting repeat trial showed Cpk = −0.06 (process drift outside USL). Performed Gage R&R MSA showing hand-held calipers consumed 169% of customer tolerance — unacceptable.",
           "Polymer injection molding: Mapped fill weight and fill length against melt temperature (300–400°F) and injection time (3s, 6s). Identified the 400°F / 6s parameter set as producing maximum fill (48.62mm). Identified unknown polymers via burn testing flowchart (LDPE and HDPE).",
           "Machining I — tool life: Conducted Taylor tool life analysis on drilling AISI 304 stainless and turning AISI 4130. Calculated Taylor exponents (n = 0.45 turning, 0.44 drilling) and validated against expected ranges for coated carbide inserts.",
           "Machining II — surface roughness & cost: Investigated feed rate and spindle speed effects on surface finish, identifying feed rate as dominant. Calculated material removal rates (0.038 to 0.730 in³/min) and batch operating costs ($30–$75) — quantifying the efficiency-vs-quality tradeoff for a two-pass machining strategy.",
           "Welding — HAZ analysis: Measured Vickers and Rockwell F hardness profiles across fusion zone and HAZ on 1018 steel, 4340 steel, 1100-H14 aluminum, and 6061-T6 aluminum welds. Documented martensite formation in 4340 (560 HV spike) and precipitate dissolution softening in 6061-T6. Correlated tensile failure locations to microstructural changes."
         ],
-        stack: ["SolidWorks", "GD&T", "Cp/Cpk Analysis", "Gage R&R", "Taylor Tool Life Model", "SMAW", "GTAW", "Injection Molding", "Sand Casting", "Investment Casting", "Cold Rolling", "Vickers Hardness", "Brinell Hardness"]
+        stack: ["SolidWorks", "GD&T", "Cp/Cpk Analysis", "Gage R&R", "Taylor Tool Life Model", "SMAW", "GTAW", "Injection Molding", "Sand Casting", "Investment Casting", "Cold Rolling", "Vickers Hardness", "Brinell Hardness"],
+        images: [
+          { src: "images/mfg_process_capability.svg", caption: "Process capability: the sand-cast flange diameter drifted above its upper limit on the repeat run (Cpk = −0.06)." },
+          { src: "images/mfg_surface_roughness.svg", caption: "Surface roughness: profilometer measurements against visual comparator estimates." },
+          { src: "images/mfg_shrinkage.svg", caption: "Casting shrinkage allowance by process." }
+        ]
       }
     };
 
-    // ── Modal logic ──
+    // ── Project panel ──
     const overlay = document.getElementById('modalOverlay');
     const modalBody = document.getElementById('modalBody');
+    const modalContent = document.getElementById('modalContent');
     const closeBtn = document.getElementById('modalClose');
     let lastFocused = null;
 
@@ -1038,12 +793,11 @@
 
       lastFocused = document.activeElement;
 
-      const stackHTML = data.stack.map(s => `<span>${s}</span>`).join('');
       const contribHTML = data.contributions.map(c => `<li>${c}</li>`).join('');
 
       const imagesHTML = data.images ? `
         <div class="modal-section">
-          <h4>Results & Visualizations</h4>
+          <h3>Results</h3>
           <div class="modal-images">
             ${data.images.map(img => `
               <div class="modal-image">
@@ -1055,31 +809,42 @@
         </div>
       ` : '';
 
+      const linksHTML = data.links ? `
+        <div class="modal-section">
+          <h3>Links</h3>
+          <div class="modal-links">
+            ${data.links.map(l => `<a href="${l.href}" target="_blank" rel="noopener" class="btn">${l.label}</a>`).join('')}
+          </div>
+        </div>
+      ` : '';
+
       modalBody.innerHTML = `
-        <span class="modal-tag">${data.tag}</span>
         <h2 id="modalTitle">${data.title}</h2>
         <p class="modal-meta">${data.meta}</p>
 
         <div class="modal-section">
-          <h4>Overview</h4>
+          <h3>Overview</h3>
           <p>${data.overview}</p>
         </div>
 
         ${imagesHTML}
 
         <div class="modal-section">
-          <h4>Key Contributions</h4>
+          <h3>What I did</h3>
           <ul>${contribHTML}</ul>
         </div>
 
         <div class="modal-section">
-          <h4>Tools & Technologies</h4>
-          <div class="modal-stack">${stackHTML}</div>
+          <h3>Tools</h3>
+          <p class="modal-stack">${data.stack.join(', ')}</p>
         </div>
+
+        ${linksHTML}
       `;
 
       overlay.classList.add('active');
       document.body.style.overflow = 'hidden';
+      modalContent.scrollTop = 0;
       closeBtn.focus();
     }
 
@@ -1098,9 +863,213 @@
       if (e.target === overlay) closeModal();
     });
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && overlay.classList.contains('active')) closeModal();
+      if (!overlay.classList.contains('active')) return;
+      if (e.key === 'Escape') closeModal();
+      if (e.key === 'Tab') {
+        // Keep keyboard focus inside the open panel
+        const items = modalContent.querySelectorAll('button, a[href]');
+        const first = items[0], last = items[items.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
     });
-  </script>
 
+    // ── Live plot: one predator, two prey ──
+    // x1' = x1(a1 - b1 y)   grasshoppers
+    // x2' = x2(a2 - b2 y)   beetles
+    // y'  = y(-d + g1 x1 + g2 x2)   wolf spiders
+    // With every rate equal to 1, each starting point sits on a closed orbit.
+    (function () {
+      const canvas = document.getElementById('plot');
+      if (!canvas || !canvas.getContext) return;
+      const ctx = canvas.getContext('2d');
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      const deriv = (s) => [s[0] * (1 - s[2]), s[1] * (1 - s[2]), s[2] * (-1 + s[0] + s[1])];
+      const add = (s, k, h) => [s[0] + k[0] * h, s[1] + k[1] * h, s[2] + k[2] * h];
+      function rk4(s, h) {
+        const k1 = deriv(s), k2 = deriv(add(s, k1, h / 2)), k3 = deriv(add(s, k2, h / 2)), k4 = deriv(add(s, k3, h));
+        return [
+          s[0] + h / 6 * (k1[0] + 2 * k2[0] + 2 * k3[0] + k4[0]),
+          s[1] + h / 6 * (k1[1] + 2 * k2[1] + 2 * k3[1] + k4[1]),
+          s[2] + h / 6 * (k1[2] + 2 * k2[2] + 2 * k3[2] + k4[2])
+        ];
+      }
+
+      // Integrate one full cycle from each starting population
+      const starts = [
+        [0.50, 0.50, 0.32],
+        [1.05, 0.30, 0.45],
+        [0.28, 1.00, 0.48],
+        [0.20, 0.42, 0.62],
+        [0.95, 0.95, 0.60],
+        [0.62, 0.18, 0.78]
+      ];
+      const H = 0.004, KEEP = 6;
+      const orbits = starts.map((s0) => {
+        const pts = [s0];
+        let s = s0, left = false;
+        for (let i = 1; i < 60000; i++) {
+          s = rk4(s, H);
+          const dist = Math.hypot(s[0] - s0[0], s[1] - s0[1], s[2] - s0[2]);
+          if (dist > 0.08) left = true;
+          if (left && dist < 0.012) break;
+          if (i % KEEP === 0) pts.push(s);
+        }
+        return pts;
+      });
+
+      // Each axis runs from zero to just past the largest population it sees
+      const top = [0, 0, 0];
+      orbits.forEach(o => o.forEach(p => { for (let k = 0; k < 3; k++) top[k] = Math.max(top[k], p[k]); }));
+      const AX = top.map(v => v * 1.08);
+
+      // Colour scale, cold to hot, matching the legend under the plot
+      const stops = [[43, 74, 203], [25, 181, 165], [242, 194, 48], [228, 87, 46]];
+      function heat(t) {
+        t = Math.max(0, Math.min(1, t)) * (stops.length - 1);
+        const i = Math.min(stops.length - 2, Math.floor(t)), f = t - i;
+        const c = stops[i].map((v, k) => Math.round(v + (stops[i + 1][k] - v) * f));
+        return `rgb(${c[0]},${c[1]},${c[2]})`;
+      }
+      let maxY = 0;
+      orbits.forEach(o => o.forEach(p => { maxY = Math.max(maxY, p[2]); }));
+
+      let yaw = -0.62, pitch = 0.36, W = 0, Hh = 0, scale = 1, cx = 0, cy = 0;
+
+      function project(p) {
+        const u = p[0] / AX[0] - 0.5, v = p[1] / AX[1] - 0.5, w = p[2] / AX[2] - 0.5;
+        const xr = u * Math.cos(yaw) - v * Math.sin(yaw);
+        const yr = u * Math.sin(yaw) + v * Math.cos(yaw);
+        return [cx + xr * scale, cy - (w * Math.cos(pitch) + yr * Math.sin(pitch)) * scale];
+      }
+
+      function resize() {
+        const rect = canvas.getBoundingClientRect();
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        W = rect.width; Hh = rect.height;
+        canvas.width = Math.round(W * dpr); canvas.height = Math.round(Hh * dpr);
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        scale = Math.min(W, Hh * 1.1) * 0.62;
+        cx = W / 2; cy = Hh * 0.5;
+      }
+
+      function line(a, b) {
+        const A = project(a), B = project(b);
+        ctx.beginPath(); ctx.moveTo(A[0], A[1]); ctx.lineTo(B[0], B[1]); ctx.stroke();
+      }
+
+      function label(text, p, dx, dy) {
+        const P = project(p);
+        ctx.fillText(text, P[0] + dx, P[1] + dy);
+      }
+
+      let tick = 0;
+      function draw() {
+        ctx.clearRect(0, 0, W, Hh);
+        ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+
+        // Floor grid
+        ctx.strokeStyle = '#dde3ea'; ctx.lineWidth = 1;
+        const div = 4;
+        for (let i = 0; i <= div; i++) {
+          const f = i / div;
+          line([AX[0] * f, 0, 0], [AX[0] * f, AX[1], 0]);
+          line([0, AX[1] * f, 0], [AX[0], AX[1] * f, 0]);
+        }
+
+        // Axes
+        ctx.strokeStyle = '#0f1b2d'; ctx.lineWidth = 1.25;
+        line([0, 0, 0], [AX[0], 0, 0]); line([0, 0, 0], [0, AX[1], 0]); line([0, 0, 0], [0, 0, AX[2]]);
+
+        ctx.fillStyle = '#4d5b70';
+        ctx.font = "500 12px Archivo, system-ui, sans-serif";
+        ctx.textBaseline = 'middle';
+        // Axis names sit at the middle of each axis, on the outside of the floor
+        const mid = project([AX[0] / 2, AX[1] / 2, 0]);
+        function axisName(text, p) {
+          const P = project(p);
+          const dx = P[0] - mid[0], dy = P[1] - mid[1], d = Math.hypot(dx, dy) || 1;
+          ctx.textAlign = Math.abs(dx / d) < 0.35 ? 'center' : (dx > 0 ? 'left' : 'right');
+          ctx.fillText(text, P[0] + dx / d * 14, P[1] + dy / d * 14);
+        }
+        axisName('Grasshoppers', [AX[0] / 2, 0, 0]);
+        axisName('Beetles', [0, AX[1] / 2, 0]);
+        ctx.textAlign = 'center';
+        label('Wolf spiders', [0, 0, AX[2]], 0, -12);
+
+        // The line of balance points every orbit circles
+        ctx.save();
+        ctx.setLineDash([3, 4]); ctx.strokeStyle = '#0f1b2d'; ctx.lineWidth = 1;
+        line([1, 0, 1], [0, 1, 1]);
+        ctx.restore();
+
+        // Orbits, coloured by wolf spider population
+        orbits.forEach((o, k) => {
+          const n = o.length;
+          ctx.lineWidth = 1.6; ctx.globalAlpha = 0.55;
+          for (let i = 0; i < n; i++) {
+            const a = o[i], b = o[(i + 1) % n];
+            ctx.strokeStyle = heat(a[2] / maxY);
+            line(a, b);
+          }
+          // A moving point with a short bright tail
+          const head = Math.floor(tick * (0.9 + k * 0.07) + k * n / 3) % n;
+          const tail = Math.min(70, Math.floor(n / 4));
+          ctx.lineWidth = 3;
+          for (let j = tail; j > 0; j--) {
+            const a = o[(head - j + n) % n], b = o[(head - j + 1 + n) % n];
+            ctx.globalAlpha = 1 - j / tail;
+            ctx.strokeStyle = heat(b[2] / maxY);
+            line(a, b);
+          }
+          ctx.globalAlpha = 1;
+          const P = project(o[head]);
+          ctx.fillStyle = heat(o[head][2] / maxY);
+          ctx.beginPath(); ctx.arc(P[0], P[1], 4.5, 0, Math.PI * 2); ctx.fill();
+          ctx.strokeStyle = '#ffffff'; ctx.lineWidth = 1.5; ctx.stroke();
+        });
+        ctx.globalAlpha = 1;
+      }
+
+      let dragging = false, lastX = 0, lastY = 0, visible = true, raf = null;
+
+      function frame() {
+        raf = null;
+        if (!dragging) yaw += 0.0016;
+        tick += 2;
+        draw();
+        if (visible && !document.hidden) raf = requestAnimationFrame(frame);
+      }
+      function start() { if (!raf && !reduceMotion) raf = requestAnimationFrame(frame); }
+
+      canvas.addEventListener('pointerdown', (e) => {
+        dragging = true; lastX = e.clientX; lastY = e.clientY;
+        canvas.classList.add('is-dragging');
+        canvas.setPointerCapture(e.pointerId);
+      });
+      canvas.addEventListener('pointermove', (e) => {
+        if (!dragging) return;
+        yaw += (e.clientX - lastX) * 0.008;
+        pitch = Math.max(0.08, Math.min(1.1, pitch + (e.clientY - lastY) * 0.005));
+        lastX = e.clientX; lastY = e.clientY;
+        if (reduceMotion) draw();
+      });
+      const endDrag = () => { dragging = false; canvas.classList.remove('is-dragging'); };
+      canvas.addEventListener('pointerup', endDrag);
+      canvas.addEventListener('pointercancel', endDrag);
+
+      window.addEventListener('resize', () => { resize(); draw(); });
+      document.addEventListener('visibilitychange', start);
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver((entries) => { visible = entries[0].isIntersecting; if (visible) start(); }).observe(canvas);
+      }
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(draw);
+
+      resize();
+      draw();
+      start();
+    })();
+  </script>
 </body>
 </html>

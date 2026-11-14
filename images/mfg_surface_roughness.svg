@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 495" width="880" height="495" font-family="Archivo, 'Helvetica Neue', Arial, sans-serif" role="img" aria-label="Judging roughness by eye overestimates it">
+<rect width="880" height="495" fill="#ffffff"/>
+<text x="40" y="46" font-size="20" font-weight="700" fill="#0f1b2d">Judging roughness by eye overestimates it</text>
+<text x="40" y="70" font-size="14" fill="#4d5b70">Profilometer readings against visual comparator-plate estimates for the same three specimens.</text>
+<line x1="70" x2="840" y1="430.0" y2="430.0" stroke="#0f1b2d"/>
+<text x="60" y="434.0" font-size="13" fill="#4d5b70" text-anchor="end">0</text>
+<line x1="70" x2="840" y1="370.0" y2="370.0" stroke="#dde3ea"/>
+<text x="60" y="374.0" font-size="13" fill="#4d5b70" text-anchor="end">100</text>
+<line x1="70" x2="840" y1="310.0" y2="310.0" stroke="#dde3ea"/>
+<text x="60" y="314.0" font-size="13" fill="#4d5b70" text-anchor="end">200</text>
+<line x1="70" x2="840" y1="250.0" y2="250.0" stroke="#dde3ea"/>
+<text x="60" y="254.0" font-size="13" fill="#4d5b70" text-anchor="end">300</text>
+<line x1="70" x2="840" y1="190.0" y2="190.0" stroke="#dde3ea"/>
+<text x="60" y="194.0" font-size="13" fill="#4d5b70" text-anchor="end">400</text>
+<line x1="70" x2="840" y1="130.0" y2="130.0" stroke="#dde3ea"/>
+<text x="60" y="134.0" font-size="13" fill="#4d5b70" text-anchor="end">500</text>
+<text x="70" y="96" font-size="13" fill="#4d5b70">Surface roughness Ra, microinches</text>
+<rect x="510" y="84" width="12" height="12" rx="2" fill="#2447d8"/><text x="528" y="95" font-size="13" fill="#0f1b2d">Profilometer (measured)</text>
+<rect x="690" y="84" width="12" height="12" rx="2" fill="#e4572e"/><text x="708" y="95" font-size="13" fill="#0f1b2d">Visual comparator</text>
+<path d="M173.3,430.0 V417.8 Q173.3,413.8 177.3,413.8 H193.3 Q197.3,413.8 197.3,417.8 V430.0 Z" fill="#2447d8"/>
+<path d="M199.3,430.0 V284.0 Q199.3,280.0 203.3,280.0 H219.3 Q223.3,280.0 223.3,284.0 V430.0 Z" fill="#e4572e"/>
+<text x="185.3" y="405.8" font-size="13" font-weight="600" fill="#0f1b2d" text-anchor="middle">27</text>
+<text x="211.3" y="272.0" font-size="13" font-weight="600" fill="#0f1b2d" text-anchor="middle">250</text>
+<text x="198.3" y="452" font-size="13" fill="#4d5b70" text-anchor="middle">Extruded aluminum</text>
+<path d="M430.0,430.0 V302.6 Q430.0,298.6 434.0,298.6 H450.0 Q454.0,298.6 454.0,302.6 V430.0 Z" fill="#2447d8"/>
+<path d="M456.0,430.0 V134.0 Q456.0,130.0 460.0,130.0 H476.0 Q480.0,130.0 480.0,134.0 V430.0 Z" fill="#e4572e"/>
+<text x="442.0" y="290.6" font-size="13" font-weight="600" fill="#0f1b2d" text-anchor="middle">219</text>
+<text x="468.0" y="122.0" font-size="13" font-weight="600" fill="#0f1b2d" text-anchor="middle">500</text>
+<text x="455.0" y="452" font-size="13" fill="#4d5b70" text-anchor="middle">Hot-rolled 1020 steel</text>
+<path d="M686.7,430.0 V420.2 Q686.7,416.2 690.7,416.2 H706.7 Q710.7,416.2 710.7,420.2 V430.0 Z" fill="#2447d8"/>
+<path d="M712.7,430.0 V386.0 Q712.7,382.0 716.7,382.0 H732.7 Q736.7,382.0 736.7,386.0 V430.0 Z" fill="#e4572e"/>
+<text x="698.7" y="408.2" font-size="13" font-weight="600" fill="#0f1b2d" text-anchor="middle">23</text>
+<text x="724.7" y="374.0" font-size="13" font-weight="600" fill="#0f1b2d" text-anchor="middle">80</text>
+<text x="711.7" y="452" font-size="13" fill="#4d5b70" text-anchor="middle">Cold-rolled brass</text>
+</svg>
