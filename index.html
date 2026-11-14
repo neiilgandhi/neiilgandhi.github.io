@@ -212,6 +212,19 @@
       transition: transform 0.2s, color 0.2s;
     }
     .row:hover .row-open, .row:focus-visible .row-open { color: var(--signal); transform: rotate(90deg); }
+    /* A row that leads with a picture */
+    .row-feature { grid-template-columns: minmax(0, 1fr) minmax(0, 26rem); align-items: center; padding-top: 1.75rem; padding-bottom: 1.75rem; }
+    .row-feature .row-title { font-size: 1.625rem; }
+    .row-feature .row-when { grid-column: 1; grid-row: auto; margin-top: 0.9rem; }
+    .row-feature .row-when span { display: inline; }
+    .row-feature .row-when span::before { content: ", "; }
+    .row-figure {
+      grid-column: 2; grid-row: 1 / span 3; display: block;
+      background: #fff; border: 1px solid var(--ink); border-radius: 6px; overflow: hidden;
+    }
+    .row-figure img { width: 100%; transition: transform 0.4s ease-out; }
+    .row-feature:hover .row-figure img, .row-feature:focus-visible .row-figure img { transform: scale(1.04); }
+
     .status {
       font-stretch: 100%; font-weight: 600; font-size: 0.75rem; letter-spacing: 0;
       color: var(--signal); border: 1px solid currentColor; border-radius: 999px;
@@ -334,6 +347,8 @@
       .row-when span { display: inline; }
       .row-when span::before { content: ", "; }
       .row-open { grid-column: 2; grid-row: 1; }
+      .row-feature { grid-template-columns: minmax(0, 1fr); }
+      .row-figure { grid-column: 1; grid-row: auto; margin-top: 1.1rem; }
       .studies { grid-template-columns: 1fr; }
       .skills div { grid-template-columns: 1fr; }
       .plot figcaption { grid-template-columns: 1fr; }
@@ -409,18 +424,18 @@
           <h3>Research</h3>
           <ul class="rows">
             <li>
-              <button class="row project-card" data-project="drone">
+              <button class="row row-feature project-card" data-project="drone">
                 <span class="row-title">3D-printed carbon-fiber quadcopter frame <span class="status">In progress</span></span>
                 <span class="row-sum">My honors thesis. I'm reproducing a commercial 7-inch carbon-fiber frame in 3D-printed carbon-fiber filament, then comparing how the two hold up under flight and landing loads.</span>
-                <span class="row-when">Aug 2026 – now <span>PACLAB, Penn State</span></span>
-                <span class="row-open" aria-hidden="true">+</span>
+                <span class="row-when">Aug 2026 – now<span>PACLAB, Penn State</span></span>
+                <span class="row-figure"><img src="images/drone_frame_iso.jpg" alt="SolidWorks model of the quadcopter frame: two carbon-fiber plates joined by standoffs, with four motor arms" /></span>
               </button>
             </li>
             <li>
               <button class="row project-card" data-project="lotka">
                 <span class="row-title">One predator, two prey</span>
                 <span class="row-sum">A 3D nonlinear ODE model that extends Lotka-Volterra to a wolf spider and two prey species. I'm second of six authors on the manuscript. It's the plot at the top of this page.</span>
-                <span class="row-when">May 2025 – Jan 2026 <span>Penn State Behrend</span></span>
+                <span class="row-when">May 2025 – Jan 2026<span>Penn State Behrend</span></span>
                 <span class="row-open" aria-hidden="true">+</span>
               </button>
             </li>
@@ -434,7 +449,7 @@
               <button class="row project-card" data-project="thermal">
                 <span class="row-title">Drone thermal mapping for solar siting</span>
                 <span class="row-sum">Merged drone thermal imagery into orthomosaics and built a MATLAB pipeline that maps rooftop surface temperatures to find the best areas for solar panels.</span>
-                <span class="row-when">Jun – Aug 2026 <span>Pittsburgh Drone Services</span></span>
+                <span class="row-when">Jun – Aug 2026<span>Pittsburgh Drone Services</span></span>
                 <span class="row-open" aria-hidden="true">+</span>
               </button>
             </li>
@@ -442,7 +457,7 @@
               <button class="row project-card" data-project="avt">
                 <span class="row-title">EV drive-unit benchmarking for EcoCAR <span class="status">In progress</span></span>
                 <span class="row-sum">Comparing 10+ drive units against the Chevrolet Blazer EV on power, torque, efficiency, and cost for a rear-motor swap.</span>
-                <span class="row-when">Sept 2026 – now <span>Penn State Advanced Vehicle Team</span></span>
+                <span class="row-when">Sept 2026 – now<span>Penn State Advanced Vehicle Team</span></span>
                 <span class="row-open" aria-hidden="true">+</span>
               </button>
             </li>
@@ -450,7 +465,7 @@
               <button class="row project-card" data-project="rov">
                 <span class="row-title">MATE underwater ROV</span>
                 <span class="row-sum">Machined frame parts on a CNC router, integrated the thrusters, and led two teams of 15+ students. We won Best Engineering Presentation.</span>
-                <span class="row-when">Aug 2021 – Jun 2025 <span>Lead mechanical contributor</span></span>
+                <span class="row-when">Aug 2021 – Jun 2025<span>Lead mechanical contributor</span></span>
                 <span class="row-open" aria-hidden="true">+</span>
               </button>
             </li>
@@ -464,7 +479,7 @@
               <button class="row project-card" data-project="linefollower">
                 <span class="row-title">Autonomous line-following vehicle</span>
                 <span class="row-sum">An Arduino vehicle that tracks a line with photoresistor arrays. I wrote the C++ control code that adjusts motor PWM to correct its path in real time.</span>
-                <span class="row-when">Nov 2024 – Jan 2025 <span>Arduino, C++</span></span>
+                <span class="row-when">Nov 2024 – Jan 2025<span>Arduino, C++</span></span>
                 <span class="row-open" aria-hidden="true">+</span>
               </button>
             </li>
@@ -472,7 +487,7 @@
               <button class="row project-card" data-project="rootline">
                 <span class="row-title">Rootline</span>
                 <span class="row-sum">Money plans for immigrant families: a step-by-step credit plan, a milestone timeline for each child, and an advice checker where every claim links to a source. A solo build for the FNB Challenge.</span>
-                <span class="row-when">Oct 2026 <span>HackPSU</span></span>
+                <span class="row-when">Oct 2026<span>HackPSU</span></span>
                 <span class="row-open" aria-hidden="true">+</span>
               </button>
             </li>
@@ -480,7 +495,7 @@
               <button class="row project-card" data-project="hackpsu">
                 <span class="row-title">Uplift</span>
                 <span class="row-sum">A student wellness app with a companion that nudges you to take breaks, sorts your coursework by urgency, and keeps crisis resources one tap away.</span>
-                <span class="row-when">Mar 2026 <span>HackPSU</span></span>
+                <span class="row-when">Mar 2026<span>HackPSU</span></span>
                 <span class="row-open" aria-hidden="true">+</span>
               </button>
             </li>
@@ -598,7 +613,12 @@
           "Rapidly prototyped and iterated on the drone frame over three weeks using a Bambu Lab X1E 3D printer.",
           "Developing autonomous waypoint flight in a motion-capture space using ROS 2 on Linux."
         ],
-        stack: ["SolidWorks FEA", "Bambu Lab X1E", "Carbon-fiber filament", "ROS 2 (Crazyswarm2)", "Linux", "Motion capture"]
+        stack: ["SolidWorks FEA", "Bambu Lab X1E", "Carbon-fiber filament", "ROS 2 (Crazyswarm2)", "Linux", "Motion capture"],
+        images: [
+          { src: "images/drone_frame_iso.jpg", caption: "The frame modeled in SolidWorks: a bottom plate with four motor arms, a top plate, and eight 20 mm standoffs between them." },
+          { src: "images/drone_frame_top.jpg", caption: "Top view of the frame." },
+          { src: "images/drone_frame_side.jpg", caption: "Side view: the two plates sit 20 mm apart on the standoffs." }
+        ]
       },
       lotka: {
         tag: "Research, Mathematical Modeling",
